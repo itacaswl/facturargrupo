@@ -1,0 +1,86 @@
+<?php
+/*
+ * This file is part of FacturaSctipts
+ * Copyright (C) 2016  Carlos Garcia Gomez  neorazorx@gmail.com
+ * Copyright (C) 2016  Luis Miguel Pérez Romero luismipr@gmail.com
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+ 
+/*
+ * @author itacaswl
+ * @copyright 2016, itacaswl. All Rights Reserved.
+ */
+
+
+/**
+ * Description of megafacturador
+ *
+ * @author itacaswl
+ */
+class megafacturador extends fs_controller
+{
+   public $texto;
+   public $texto2;
+   public $lista;
+   public $resultados_sql;
+   
+   public function __construct()
+   {
+      parent::__construct(__CLASS__, 'Megafacturador', 'ventas', FALSE, FALSE);      
+   }
+   
+   protected function private_core()
+   {
+   	
+   	$this->share_extensions();
+   	
+      $this->texto = 'hola mundo';
+      $this->texto2 = 'Bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla, bla.';
+      $this->lista = array('peras', 'manzanas', 'puerros', 'naranjas');
+      
+      $this->resultados_sql = $this->db->select("select * from paises;");
+   }
+   
+   /**
+    * Añadimos las extensiones (los botones).
+    */
+   private function share_extensions() {
+      $fsext = new fs_extension();
+      $fsext->name = 'copiar_factura';
+      $fsext->from = __CLASS__;
+      $fsext->to = 'ventas_factura';
+      $fsext->type = 'button';
+      $fsext->text = '<span class="glyphicon glyphicon-scissors" aria-hidden="true"></span><span>&nbsp; Copiar</span>';
+      $fsext->params = '&factura=TRUE';
+      $fsext->save();
+
+
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
